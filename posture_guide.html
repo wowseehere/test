@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上班族坐姿求生指南 🪑</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Permanent+Marker&display=swap');
+
+  :root {
+    --bg: #FFF8F0;
+    --card: #FFFFFF;
+    --accent: #FF6B35;
+    --accent2: #FFD166;
+    --accent3: #06D6A0;
+    --danger: #EF476F;
+    --text: #2D2D2D;
+    --muted: #888;
+    --border: #E0D5C8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-top: 30px solid var(--accent);
+    z-index: 2;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: var(--text);
+    font-size: .75rem;
+    font-weight: 900;
+    padding: .25rem .75rem;
+    border-radius: 999px;
+    letter-spacing: .1em;
+    margin-bottom: .75rem;
+    text-transform: uppercase;
+  }
+  header h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    text-shadow: 3px 3px 0 rgba(0,0,0,.15);
+  }
+  header p {
+    margin-top: .75rem;
+    font-size: 1.05rem;
+    opacity: .9;
+  }
+  .emoji-row { font-size: 2rem; margin-top: 1rem; letter-spacing: .5rem; }
+
+  /* ── Main Layout ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.25rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* ── Section Title ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-title .num {
+    width: 2.2rem; height: 2.2rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 900;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 1.35rem;
+    font-weight: 900;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 1.75rem;
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--border);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 8px 0 var(--border);
+  }
+
+  /* ── Posture Grid ── */
+  .posture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+  .posture-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1.5rem;
+    border: 2px solid var(--border);
+    box-shadow: 3px 3px 0 var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .75rem;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .posture-card:hover { transform: translateY(-4px); box-shadow: 5px 7px 0 var(--border); }
+  .posture-card .icon-wrap {
+    width: 90px; height: 90px;
+    background: var(--bg);
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: grid; place-items: center;
+    font-size: 3rem;
+  }
+  .posture-card h3 { font-weight: 900; font-size: 1.05rem; }
+  .posture-card p { font-size: .88rem; color: #555; line-height: 1.6; }
+  .posture-card .rule {
+    background: #FFF3EB;
+    border-left: 3px solid var(--accent);
+    padding: .5rem .75rem;
+    border-radius: 0 8px 8px 0;
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--accent);
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ── Human SVG section ── */
+  .human-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 580px) {
+    .human-section { grid-template-columns: 1fr; }
+  }
+  .human-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  .annot-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+  }
+  .annot-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .annot-item .dot {
+    width: 1.6rem; height: 1.6rem;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 900;
+    font-size: .75rem;
+    flex-shrink: 0;
+    margin-top: .05rem;
+    color: #fff;
+  }
+  .annot-item strong { display: block; font-weight: 900; }
+
+  /* ── Short person tip ── */
+  .tip-box {
+    background: #FFFBEB;
+    border: 2px dashed var(--accent2);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+  .tip-box h3 { font-weight: 900; font-size: 1.05rem; margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .tip-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 2px solid var(--accent2);
+    font-size: .87rem;
+    line-height: 1.6;
+  }
+  .tip-item .tip-icon { font-size: 1.8rem; display: block; margin-bottom: .4rem; }
+  .tip-item strong { display: block; font-weight: 900; margin-bottom: .2rem; }
+
+  /* ── Checklist ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin-top: .5rem;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    cursor: pointer;
+    user-select: none;
+    padding: .6rem .9rem;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    transition: background .15s, border-color .15s;
+    font-size: .9rem;
+  }
+  .check-item:hover { background: #FFF0E8; border-color: var(--accent); }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-box {
+    width: 1.4rem; height: 1.4rem;
+    border-radius: 6px;
+    border: 2.5px solid #ccc;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    font-size: .9rem;
+    transition: background .15s, border-color .15s;
+  }
+  .check-item.checked .check-box {
+    background: var(--accent3);
+    border-color: var(--accent3);
+    color: #fff;
+  }
+  .check-item.checked { background: #EEFAF6; border-color: var(--accent3); text-decoration: line-through; color: #999; }
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent3), #06a07a);
+    border-radius: 999px;
+    width: 0%;
+    transition: width .4s ease;
+  }
+  .progress-label { text-align: right; font-size: .8rem; color: var(--muted); margin-top: .35rem; font-weight: 700; }
+  #praise { text-align: center; font-size: 1.2rem; font-weight: 900; color: var(--accent3); margin-top: .5rem; min-height: 1.8rem; }
+
+  /* ── Pain map ── */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .pain-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.1rem;
+    border: 2px solid var(--border);
+    box-shadow: 3px 3px 0 var(--border);
+    font-size: .87rem;
+    line-height: 1.6;
+  }
+  .pain-card .pain-header {
+    display: flex; align-items: center; gap: .5rem;
+    font-weight: 900; margin-bottom: .5rem; font-size: .95rem;
+  }
+  .pain-card .pain-badge {
+    background: var(--danger);
+    color: #fff;
+    font-size: .7rem;
+    padding: .15rem .5rem;
+    border-radius: 999px;
+    font-weight: 900;
+  }
+  .pain-card ul { padding-left: 1rem; color: #555; }
+  .pain-card ul li { margin-bottom: .2rem; }
+  .fix-tag {
+    display: inline-block;
+    background: #FFF0E8;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    font-size: .75rem;
+    font-weight: 900;
+    padding: .2rem .55rem;
+    border-radius: 6px;
+    margin-top: .5rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--text);
+    color: #aaa;
+    text-align: center;
+    padding: 2rem;
+    font-size: .82rem;
+    line-height: 1.8;
+  }
+  footer strong { color: #fff; }
+
+  /* ── Ribbon ── */
+  .ribbon {
+    background: var(--accent2);
+    color: var(--text);
+    text-align: center;
+    font-weight: 900;
+    font-size: .9rem;
+    padding: .55rem;
+    letter-spacing: .05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">⚠️ 閱讀此頁面請保持正確坐姿，否則你看完還是會痛</div>
+
+<header>
+  <div class="header-badge">上班族坐姿求生指南 2025</div>
+  <h1>你的身體在<br>默默抗議了嗎？</h1>
+  <p>每天 8 小時坐著，你的脊椎想跟你離婚</p>
+  <div class="emoji-row">🪑 💻 😩 🦴</div>
+</header>
+
+<main>
+
+  <!-- 1. 黃金坐姿原則 -->
+  <section class="card">
+    <div class="section-title">
+      <span class="num">1</span>
+      <h2>黃金坐姿三原則 — 你的「標準姿勢」長這樣</h2>
+    </div>
+
+    <div class="human-section">
+      <div class="human-wrap">
+        <!-- SVG Person sitting at desk -->
+        <svg viewBox="0 0 260 340" width="220" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+          <!-- desk -->
+          <rect x="30" y="185" width="200" height="10" rx="4" fill="#c9b99a"/>
+          <rect x="60" y="195" width="10" height="50" rx="3" fill="#b5a58a"/>
+          <rect x="190" y="195" width="10" height="50" rx="3" fill="#b5a58a"/>
+          <!-- monitor -->
+          <rect x="90" y="130" width="90" height="55" rx="6" fill="#334"/>
+          <rect x="94" y="134" width="82" height="47" rx="4" fill="#5BE8D0" opacity=".25"/>
+          <rect x="128" y="185" width="14" height="10" rx="2" fill="#334"/>
+          <rect x="115" y="193" width="40" height="4" rx="2" fill="#334"/>
+          <!-- label: 螢幕頂端≈眼睛高 -->
+          <line x1="90" y1="140" x2="58" y2="125" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <circle cx="58" cy="124" r="4" fill="#FF6B35"/>
+          <!-- chair seat -->
+          <rect x="85" y="250" width="90" height="12" rx="5" fill="#9B7E5C"/>
+          <!-- chair back -->
+          <rect x="155" y="200" width="12" height="55" rx="5" fill="#9B7E5C"/>
+          <!-- chair legs -->
+          <rect x="88" y="262" width="8" height="35" rx="3" fill="#7a6245"/>
+          <rect x="164" y="262" width="8" height="35" rx="3" fill="#7a6245"/>
+          <!-- footrest hint -->
+          <rect x="75" y="298" width="55" height="8" rx="3" fill="#ccc"/>
+          <text x="65" y="320" font-size="9" fill="#888">墊腳板</text>
+          <!-- body torso -->
+          <rect x="110" y="205" width="40" height="48" rx="10" fill="#FBBF82"/>
+          <!-- hips on seat -->
+          <rect x="100" y="245" width="60" height="14" rx="6" fill="#FBBF82"/>
+          <!-- thighs (parallel) -->
+          <rect x="100" y="254" width="55" height="14" rx="5" fill="#FBBF82"/>
+          <!-- legs down -->
+          <rect x="100" y="265" width="18" height="32" rx="5" fill="#FBBF82"/>
+          <rect x="140" y="265" width="18" height="32" rx="5" fill="#FBBF82"/>
+          <!-- feet -->
+          <ellipse cx="109" cy="298" rx="12" ry="6" fill="#8a6040"/>
+          <ellipse cx="149" cy="298" rx="12" ry="6" fill="#8a6040"/>
+          <!-- arms -->
+          <line x1="110" y1="218" x2="82" y2="235" stroke="#FBBF82" stroke-width="12" stroke-linecap="round"/>
+          <line x1="150" y1="218" x2="178" y2="235" stroke="#FBBF82" stroke-width="12" stroke-linecap="round"/>
+          <!-- head -->
+          <circle cx="130" cy="185" r="22" fill="#FBBF82"/>
+          <!-- eye at monitor level -->
+          <circle cx="123" cy="184" r="3" fill="#333"/>
+          <circle cx="137" cy="184" r="3" fill="#333"/>
+          <!-- 90° angle labels -->
+          <!-- elbow 90 -->
+          <text x="52" y="238" font-size="10" fill="#06D6A0" font-weight="bold">90°</text>
+          <!-- knee 90 -->
+          <text x="68" y="282" font-size="10" fill="#06D6A0" font-weight="bold">90°</text>
+          <!-- hip 90 -->
+          <text x="98" y="290" font-size="10" fill="#06D6A0" font-weight="bold">90°</text>
+
+          <!-- annotation lines -->
+          <line x1="100" y1="236" x2="78" y2="240" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="100" y1="268" x2="78" y2="275" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+        </svg>
+      </div>
+
+      <ul class="annot-list">
+        <li class="annot-item">
+          <span class="dot" style="background:#FF6B35">A</span>
+          <div><strong>螢幕高度：眼睛 ≈ 螢幕上緣</strong>視線微微往下 10–15°，頸椎才不會往前突出</div>
+        </li>
+        <li class="annot-item">
+          <span class="dot" style="background:#FFD166;color:#333">B</span>
+          <div><strong>螢幕距離：一個手臂長</strong>約 50–70cm，近視再遠一點，別跟螢幕太親密</div>
+        </li>
+        <li class="annot-item">
+          <span class="dot" style="background:#06D6A0">C</span>
+          <div><strong>手肘 90°</strong>鍵盤高度讓手臂自然平放，手腕不翹起</div>
+        </li>
+        <li class="annot-item">
+          <span class="dot" style="background:#8B5CF6">D</span>
+          <div><strong>髖膝踝 各 90°</strong>大腿平行地面，腳踩地，不要翹腳翹到地球毀滅</div>
+        </li>
+        <li class="annot-item">
+          <span class="dot" style="background:#EF476F">E</span>
+          <div><strong>腰靠椅背</strong>腰部有支撐，別像蝦子一樣拱著背辦公</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. 三大調整要點 -->
+  <section>
+    <div class="section-title">
+      <span class="num">2</span>
+      <h2>三大調整要點（一個一個搞定）</h2>
+    </div>
+    <div class="posture-grid">
+      <div class="posture-card">
+        <div class="icon-wrap">🖥️</div>
+        <h3>螢幕高度</h3>
+        <p>螢幕頂端對齊眉毛或眼睛。筆電用戶：必須架高！筆電直接放桌上是在練低頭族</p>
+        <div class="rule">📏 試試：盯著前方，眼睛自然落在螢幕上 ⅓ 處</div>
+      </div>
+      <div class="posture-card">
+        <div class="icon-wrap">🪑</div>
+        <h3>椅子高度</h3>
+        <p>坐好後雙腳平踩地面，膝蓋彎 90°。座位太高 → 腳懸空；太低 → 膝蓋高過屁股，都不行</p>
+        <div class="rule">📏 試試：坐下後大腿與地面平行如桌面</div>
+      </div>
+      <div class="posture-card">
+        <div class="icon-wrap">⌨️</div>
+        <h3>鍵盤與滑鼠</h3>
+        <p>手肘自然垂下，前臂水平放桌上。鍵盤太遠會讓肩膀往前縮，久了像企鵝</p>
+        <div class="rule">📏 試試：放鬆手臂，直接落在鍵盤上剛好</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 矮個子救星 -->
+  <section>
+    <div class="section-title">
+      <span class="num">3</span>
+      <h2>矮個子求生術 🦸（別讓辦公室淘汰你）</h2>
+    </div>
+    <div class="tip-box">
+      <h3>📣 桌子太高？椅子調高腳就懸空？別慌，有解！</h3>
+      <p style="font-size:.88rem; color:#666; line-height:1.7">辦公室桌子通常為 170cm 標準身高設計，矮一點的同事每天默默用錯誤姿勢工作，終將走向肩頸痛之路。以下是三種解法：</p>
+      <div class="tip-grid">
+        <div class="tip-item">
+          <span class="tip-icon">🧱</span>
+          <strong>腳踏板 / 墊腳凳</strong>
+          讓腳有地方踩，膝蓋保持 90°。可買專用腳踏板，或拿廢棄厚書充當（《XXX的成功哲學》終於有用武之地）
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">📚</span>
+          <strong>螢幕架高</strong>
+          椅子調高後螢幕變低，用螢幕架或筆電架把螢幕墊高。網路上幾百塊就能買到
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">💺</span>
+          <strong>有腰枕的椅子</strong>
+          矮個子坐椅背可能腰枕位置對不到，可另購腰靠墊自行調整高度
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🖥️</span>
+          <strong>外接鍵盤 + 螢幕</strong>
+          筆電用戶必備：架高筆電，外接鍵盤滑鼠，讓螢幕和手分開控制高度，完美解耦！
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 坐姿自我檢核 -->
+  <section class="card">
+    <div class="section-title">
+      <span class="num">4</span>
+      <h2>現在坐姿有沒有對？點點看！</h2>
+    </div>
+    <p style="font-size:.88rem; color:#666; margin-bottom:1rem;">先調整好再勾，不要邊歪著邊打勾自欺欺人 👀</p>
+
+    <div class="checklist" id="checklist">
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>👀 螢幕頂端對齊我的眉毛或眼睛（不是下巴不是額頭）</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>📏 螢幕距離一個手臂長（50~70cm），手指剛好碰到螢幕</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>💻 筆電已架高，並使用外接鍵盤（筆電族必填）</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>🦵 雙腳平踩地面，膝蓋彎曲約 90°，不翹腳</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>🙌 手肘約 90°，前臂輕放桌面，手腕不彎曲</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>🪑 椅背有支撐到腰，背不是懸空的</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>🧍 現在脖子沒有往前伸（龜頸偵測中...）</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        <span>⏰ 每 30~45 分鐘有起身活動一下（廁所也算）</span>
+      </label>
+    </div>
+
+    <div class="progress-bar-wrap" style="margin-top:1.25rem">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 / 8</div>
+    <div id="praise"></div>
+  </section>
+
+  <!-- 5. 哪裡痛就是哪裡錯 -->
+  <section>
+    <div class="section-title">
+      <span class="num">5</span>
+      <h2>哪裡痛 = 哪裡姿勢出問題 🚨</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-header">🦴 脖子後側痛 <span class="pain-badge">常見</span></div>
+        <ul>
+          <li>螢幕太低，你在低頭</li>
+          <li>頭往前伸（龜頸）</li>
+          <li>手機滑太久</li>
+        </ul>
+        <span class="fix-tag">↑ 螢幕架高 + 縮下巴</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-header">💆 肩膀痠緊</div>
+        <ul>
+          <li>鍵盤/滑鼠太遠，肩膀往前縮</li>
+          <li>椅子太低，手肘懸空</li>
+        </ul>
+        <span class="fix-tag">↓ 把鍵盤拉近一點</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-header">🔙 下背/腰痛</div>
+        <ul>
+          <li>沒有靠椅背，腰懸空</li>
+          <li>坐太久沒起身</li>
+          <li>椅子無腰支撐</li>
+        </ul>
+        <span class="fix-tag">加腰墊 + 每小時起身</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-header">✋ 手腕痛</div>
+        <ul>
+          <li>手腕向上翹打字</li>
+          <li>滑鼠太遠，手腕壓著桌緣</li>
+        </ul>
+        <span class="fix-tag">護腕墊 + 手腕放平</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-header">👁️ 眼睛痠/頭痛</div>
+        <ul>
+          <li>螢幕太亮或太暗</li>
+          <li>螢幕太近</li>
+          <li>沒有 20-20-20 法則</li>
+        </ul>
+        <span class="fix-tag">每 20 分鐘看 20 呎遠 20 秒</span>
+      </div>
+      <div class="pain-card">
+        <div class="pain-header">🦵 膝蓋/屁股痛</div>
+        <ul>
+          <li>翹腳（血液循環差）</li>
+          <li>椅面太硬太窄</li>
+          <li>坐到邊邊沒有坐滿</li>
+        </ul>
+        <span class="fix-tag">不要翹腳 + 坐滿椅子</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小提醒 -->
+  <div style="text-align:center; padding:1.5rem; border:2px dashed #FFD166; border-radius:14px; background:#FFFBEB;">
+    <p style="font-size:1.1rem; font-weight:900;">💡 最好的坐姿，是下一個坐姿</p>
+    <p style="font-size:.88rem; color:#666; margin-top:.5rem; line-height:1.8">再正確的坐姿，久坐都是傷害。<br>每 30~45 分鐘站起來伸展一下，你的脊椎會比你先離職。</p>
+  </div>
+
+</main>
+
+<footer>
+  <strong>上班族坐姿求生指南</strong><br>
+  本頁資訊僅供參考，若已有慢性疼痛請諮詢物理治療師或骨科醫生<br>
+  你的身體是這輩子唯一的辦公室，請好好維護它 🪴
+</footer>
+
+<script>
+  function toggleCheck(label) {
+    label.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.check-item');
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const total = items.length;
+    const pct = Math.round((checked / total) * 100);
+
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = checked + ' / ' + total;
+
+    const praise = document.getElementById('praise');
+    if (checked === 0) praise.textContent = '';
+    else if (pct < 40) praise.textContent = '😅 還有進步空間，你的脊椎在等你';
+    else if (pct < 70) praise.textContent = '👍 不錯！繼續調整，你的腰謝謝你';
+    else if (pct < 100) praise.textContent = '🔥 快了快了！差一點就完美坐姿了';
+    else praise.textContent = '🎉 滿分！你是辦公室坐姿冠軍，但記得還是要起來動一動！';
+  }
+</script>
+</body>
+</html>
